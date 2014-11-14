@@ -1,0 +1,35 @@
+h1 {margin:0;padding:10px 15px}
+button {width:auto}
+input[type="text"],textarea,select {width:100% !important;}
+#ch_calendar {width:320px !important;}
+.clear {clear:both}
+#tabs {width:100%}
+.ui-tabs-vertical { width:200px; }
+.ui-tabs-vertical .ui-tabs-nav { padding: 10px; float: left; width:180px;display:block;}
+.ui-tabs-vertical .ui-tabs-nav li { clear:both;display:block; width: 100%;padding:0;}
+.ui-tabs-vertical .ui-tabs-nav li a { display:block; width:100%; border:none;padding:6px;margin: 3px}
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active  { border:none;}
+.ui-tabs-vertical .ui-tabs-panel { padding: 10px; width:auto; margin-left: 210px;}
+.ui-tabs-vertical .ui-widget-header {background: none;border:none}
+
+.calendarLeft {width:210px;}
+.calendarWrapper {position:relative; overflow:hidden; }
+.calendarList {list-style: none; margin:0;padding:0}
+.calendarList li {list-style: none;margin:10px 0}
+.calendarList li a {display:block; text-decoration:none; color:#666; padding:5px;outline: none}
+.calendarList li a:hover{background:#dedede}
+.calendarList li a.active, .calendarList li a:active {background:#fbd75b}
+.calendarLeft {display: none}
+.addCal {display:none}
+#edit_calendar {display:inline-block; float:left;margin-top:14px; margin-right:3px}
+
+.button {padding:5px;margin:3px 0}
+.button:hover {background:#dedede}
+fieldset {margin:0 0 10px 0}
+.categoryList {padding:10px;}
+
+.calendarInner {margin-left:260px}
+.leftCat {width:220px;float:left; border:1px solid #ddd;background:#fff; margin-top: 15px; padding:10px}
+.leftCat h2 {text-align: center}
+.noty_p {margin-top: 10px; display:block; background: #ddd;padding:4px}
+.noty_p input[type="text"] {width:200px !important;}
