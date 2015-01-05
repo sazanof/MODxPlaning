@@ -139,7 +139,7 @@ else {
                             $post['cal_id']=$cal_one['id'];
                             $post['description']=$_POST['description'];
                             $post['created']=time();
-                            $cat_sovp=$modx->db->select('id,title',$cal->tbl_categories,"WHERE title='".$post['title']."'");
+                            $cat_sovp=$modx->db->select('id,title',$cal->tbl_categories,"title='".$post['title']."'");
                             if ($modx->db->getRecordCount($cat_sovp)==1)
                             {
                                 $out.='<p class="error">Нельзя добавить одинаковые категории</p>';
