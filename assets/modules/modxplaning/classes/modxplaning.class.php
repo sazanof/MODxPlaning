@@ -18,12 +18,12 @@ class MODxPlaning {
     public function getDefaultCalendar()
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars,'WHERE def=1'));
+        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars,'def=1'));
     }
     public function getCalendar($id)
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars.'WHERE id='.$id));
+        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars.'id='.$id));
     }
     public function getCalendars ()
     {
@@ -53,12 +53,12 @@ class MODxPlaning {
     public function getCategories ($id)
     {
         global $modx;
-        return $modx->db->makeArray($modx->db->select("id,title,description",$this->tbl_categories,'WHERE cal_id='.$id));
+        return $modx->db->makeArray($modx->db->select("id,title,description",$this->tbl_categories,'cal_id='.$id));
     }
     public function getCategory ($id)
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,title,description",$this->tbl_categories,'WHERE id='.$id));
+        return $modx->db->getRow($modx->db->select("id,title,description",$this->tbl_categories,'='.$id));
     }
     public function addCategory ($post)
     {
