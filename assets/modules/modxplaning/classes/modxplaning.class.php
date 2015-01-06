@@ -18,12 +18,12 @@ class MODxPlaning {
     public function getDefaultCalendar()
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars,'WHERE def=1'));
+        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars,"def=1"));
     }
     public function getCalendar($id)
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars.'id='.$id));
+        return $modx->db->getRow($modx->db->select("id,created,title,description,doc_id,def",$this->tbl_calendars,"id=".$id));
     }
     public function getCalendars ()
     {
