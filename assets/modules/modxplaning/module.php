@@ -16,93 +16,100 @@ $defaultCalendar = $cal->getDefaultCalendar();
 if (!$_GET['op']) {
     if (count($cal->getCalendars())>0){
 
-        if ($_GET['cal_id']==''){
-            header ('Location:'.$mp_header.'&cal_id='.$defaultCalendar['id']);
-        }
-        else{
-            foreach ($cal->colors() as $key=>$val){
-                $options.=' <option value="'.$val.'">'.$key.'</option>';
-            }
-            $cals = $cal->getCalendars();
-            foreach ($cals as $citem)
-            {
-                if ($_GET['cal_id']==$citem['id']) {
-                    $activeCal ='active';
-                }
-                else {
-                    $activeCal='';
-                }
-                $calendars .= '<li><a class="fc-state-default '.$activeCal.'" href="'.$mp_header.'&cal_id='.$citem['id'].'">'.$citem['title'].'</a></li>';
-                $calendars_o .= '<option value="'.$citem['id'].'">'.$citem['title'].'</option>';
-            }
-            foreach ($cal->getCategories($_GET['cal_id']) as $item){
-                $categories_opt.='<option value="'.$item['id'].'">'.$item['title'].'</option>';
-                $categories_li.='<li><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'&cat_id='.$item['id'].'">'.$item['title'].'</a></li>';
-            }
-            $c = $cal->getCalendar($_GET['cal_id']);
-            //если есть календарь по умолчанию, то приводим весь основной скрипт в работу
-            $out.='<div id="dialog-form" title="Событие" style="display:none">
-            <div id="result"></div>
-                    <form>
-                        <input type="hidden" name="cal_id" id="cal_id" value="'.(int)$_GET['cal_id'].'">
-                        <input type="hidden" name="cat_id" id="cat_id" value="'.(int)$_GET['cat_id'].'">
-                        <input type="hidden" name="event_id" id="event_id" value="">
-                        <p><label for="event_type">'.$lang['e_title'].'</label><br>
-                        <input type="text" id="event_type" name="event_type" value=""></p>
-                        <p><label for="event_cat">'.$lang['e_cat'].'</label><br>
-                        <select id="event_cat" name="event_cat" >
-                            <option value="0">'.$lang['e_cat_opt'].'</option>
-                            '.$categories_opt.'
-                        </select></p>
-                        <p><label for="event_color">'.$lang['e_color'].'</label><br>
-                        <select name="event_color" id="event_color">
-                          '.$options.'
-                        </select></p>
-                        <p><label for="event_start">'.$lang['e_start'].'</label><br>
-                        <input type="text" name="event_start" id="event_start"/></p>
-                        <p><label for="event_end">'.$lang['e_end'].'</label><br>
-                        <input type="text" name="event_end" id="event_end"/></p>
-                        <p><label for="event_text">'.$lang['e_text'].'</label><br>
-                        <textarea name="event_text" id="event_text"></textarea></p>
-                        <p class="noty_p"><input type="checkbox" name="event_noty" id="event_noty" value="1">
-                        <label for="event_noty" style="display:inline-block;margin:5px 0"> '.$lang['e_noty'].'</label>
-                        <span class="add_alarm"> '.$lang['v'].' <input type="text" name="alarm_start" id="alarm_start" value=""></span></p>
-                        </form>
-                        <form method="post" class="form_hide">
-                        <p>'.$lang['e_moveto'].' <select name="ch_calendar" id="ch_calendar">
-                        <option value="'.$_GET['cal_id'].'">'.$lang['e_nochange'].'</option>
-                        '.$calendars_o.'</select>
-                        <button class="button fc-button fc-state-default" type="button" id="change_parent" name="change_parent" value="1">OK!</button></p>
-                    </form>
-            </div>
-            <div class="calendarLeft" title="Сменить календарь">
-                    <ul class="calendarList">
-                    '.$calendars.'
-                    </ul>
-                </div>
-            <div class="calendarWrapper">
-                <div class="leftCat">
-                    <h2>'.$lang['e_filterH1'].'</h2>
-                    <ul>
-                        <li><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'">'.$lang['e_all'].'</a></li>
-                        '.$categories_li.'
-                    </ul>
-                </div>
-                <div class="calendarInner">
-                    <a id="edit_calendar" href="#"><img src="'.$mp_imgs_dir.'edit.png"></a><h1>'.$c['title'].' (ID'.$c['id'].') <small></small></h1>
-                    <input type="hidden" name="cal_h1_id" id="cal_h1_id" value="'.$c['id'].'">
-                    <input type="hidden" name="cal_h1_def" id="cal_h1_def" value="'.$c['def'].'">
-                    <input type="hidden" name="cal_h1_title" id="cal_h1_title" value="'.$c['title'].'">
-                    <input type="hidden" name="cal_h1_description" id="cal_h1_description" value="'.$c['description'].'">
-                    <div id="calendar"></div>
-                </div>
-                <br class="clear">
-            </div>';
+        if (!$defaultCalendar['id'])
+		{
+			//header ('Location:'.$mp_header.'&cal_id='.$defaultCalendar['id']);
+		}
+		else
+		{
+			if ($_GET['cal_id']==''){
+				header ('Location:'.$mp_header.'&cal_id='.$defaultCalendar['id']);
+			}
+			else{
+				foreach ($cal->colors() as $key=>$val){
+					$options.=' <option value="'.$val.'">'.$key.'</option>';
+				}
+				$cals = $cal->getCalendars();
+				foreach ($cals as $citem)
+				{
+					if ($_GET['cal_id']==$citem['id']) {
+						$activeCal ='active';
+					}
+					else {
+						$activeCal='';
+					}
+					$calendars .= '<li><a class="fc-state-default '.$activeCal.'" href="'.$mp_header.'&cal_id='.$citem['id'].'">'.$citem['title'].'</a></li>';
+					$calendars_o .= '<option value="'.$citem['id'].'">'.$citem['title'].'</option>';
+				}
+				foreach ($cal->getCategories($_GET['cal_id']) as $item){
+					$categories_opt.='<option value="'.$item['id'].'">'.$item['title'].'</option>';
+					$categories_li.='<li><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'&cat_id='.$item['id'].'">'.$item['title'].'</a></li>';
+				}
+				$c = $cal->getCalendar($_GET['cal_id']);
+				//если есть календарь по умолчанию, то приводим весь основной скрипт в работу
+				$out.='<div id="dialog-form" title="Событие" style="display:none">
+				<div id="result"></div>
+						<form>
+							<input type="hidden" name="cal_id" id="cal_id" value="'.(int)$_GET['cal_id'].'">
+							<input type="hidden" name="cat_id" id="cat_id" value="'.(int)$_GET['cat_id'].'">
+							<input type="hidden" name="event_id" id="event_id" value="">
+							<p><label for="event_type">'.$lang['e_title'].'</label><br>
+							<input type="text" id="event_type" name="event_type" value=""></p>
+							<p><label for="event_cat">'.$lang['e_cat'].'</label><br>
+							<select id="event_cat" name="event_cat" >
+								<option value="0">'.$lang['e_cat_opt'].'</option>
+								'.$categories_opt.'
+							</select></p>
+							<p><label for="event_color">'.$lang['e_color'].'</label><br>
+							<select name="event_color" id="event_color">
+							  '.$options.'
+							</select></p>
+							<p><label for="event_start">'.$lang['e_start'].'</label><br>
+							<input type="text" name="event_start" id="event_start"/></p>
+							<p><label for="event_end">'.$lang['e_end'].'</label><br>
+							<input type="text" name="event_end" id="event_end"/></p>
+							<p><label for="event_text">'.$lang['e_text'].'</label><br>
+							<textarea name="event_text" id="event_text"></textarea></p>
+							<p class="noty_p"><input type="checkbox" name="event_noty" id="event_noty" value="1">
+							<label for="event_noty" style="display:inline-block;margin:5px 0"> '.$lang['e_noty'].'</label>
+							<span class="add_alarm"> '.$lang['v'].' <input type="text" name="alarm_start" id="alarm_start" value=""></span></p>
+							</form>
+							<form method="post" class="form_hide">
+							<p>'.$lang['e_moveto'].' <select name="ch_calendar" id="ch_calendar">
+							<option value="'.$_GET['cal_id'].'">'.$lang['e_nochange'].'</option>
+							'.$calendars_o.'</select>
+							<button class="button fc-button fc-state-default" type="button" id="change_parent" name="change_parent" value="1">OK!</button></p>
+						</form>
+				</div>
+				<div class="calendarLeft" title="Сменить календарь">
+						<ul class="calendarList">
+						'.$calendars.'
+						</ul>
+					</div>
+				<div class="calendarWrapper">
+					<div class="leftCat">
+						<h2>'.$lang['e_filterH1'].'</h2>
+						<ul>
+							<li><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'">'.$lang['e_all'].'</a></li>
+							'.$categories_li.'
+						</ul>
+					</div>
+					<div class="calendarInner">
+						<a id="edit_calendar" href="#"><img src="'.$mp_imgs_dir.'edit.png"></a><h1>'.$c['title'].' (ID'.$c['id'].') <small></small></h1>
+						<input type="hidden" name="cal_h1_id" id="cal_h1_id" value="'.$c['id'].'">
+						<input type="hidden" name="cal_h1_def" id="cal_h1_def" value="'.$c['def'].'">
+						<input type="hidden" name="cal_h1_title" id="cal_h1_title" value="'.$c['title'].'">
+						<input type="hidden" name="cal_h1_description" id="cal_h1_description" value="'.$c['description'].'">
+						<div id="calendar"></div>
+					</div>
+					<br class="clear">
+				</div>';
 
-            $btn_add_event ='<li id="add_event_button"><a href="#"><img src="'.$mp_imgs_dir.'folder_page_add.png"> '.$lang['but_addEvent'].'</a></li>';
-            $btn_add_event .='<li id="add_cat_button"><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'&op=cat"><img src="'.$mp_imgs_dir.'folder_add.png"> '.$lang['but_category'].'</a></li>';
-            $btn_add_event .='<li id="change_cal"><a href="#"><img src="'.$mp_imgs_dir.'cal.gif"> </a></li>';
-        }
+				$btn_add_event ='<li id="add_event_button"><a href="#"><img src="'.$mp_imgs_dir.'folder_page_add.png"> '.$lang['but_addEvent'].'</a></li>';
+				$btn_add_event .='<li id="add_cat_button"><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'&op=cat"><img src="'.$mp_imgs_dir.'folder_add.png"> '.$lang['but_category'].'</a></li>';
+				$btn_add_event .='<li id="change_cal"><a href="#"><img src="'.$mp_imgs_dir.'cal.gif"> </a></li>';
+			}
+		}
     }
     else{
         $out.='<div class="ui-state-highlight"><p>'.$lang['text_nocal'].'</p></div>';
