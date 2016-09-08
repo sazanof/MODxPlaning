@@ -58,7 +58,7 @@ class MODxPlaning {
     public function getCategory ($id)
     {
         global $modx;
-        return $modx->db->getRow($modx->db->select("id,title,description",$this->tbl_categories,'='.$id));
+        return $modx->db->getRow($modx->db->select("id,title,description",$this->tbl_categories,'id='.$id));
     }
     public function addCategory ($post)
     {
