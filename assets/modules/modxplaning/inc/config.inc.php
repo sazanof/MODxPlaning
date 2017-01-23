@@ -3,8 +3,8 @@
 $theme = $modx->config['manager_theme'];
 $mp_mod_id = $_GET['id'];  //id модуля
 $mp_folder = 'assets/modules/modxplaning/';     //папка с модулем
-$mp_url = $modx->config['site_url'].$mp_folder;
-$mp_header = $modx->config['site_url'].'manager/index.php?a=112&id='.$mp_mod_id;
+$mp_url = '/'.$mp_folder;
+$mp_header = MODX_MANAGER_URL.'/index.php?a=112&id='.$mp_mod_id;
 $mp_location = MODX_BASE_PATH.$mp_folder;   //путь до папки на сервере
 $mp_imgs_dir = $mp_url.'images/';
 /* TABLES */
