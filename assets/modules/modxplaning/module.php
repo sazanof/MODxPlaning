@@ -230,7 +230,7 @@ $html = '<html>
 <head>
 <title>'.$lang['module_name'].'</title>
 <meta http-equiv="Content-Type" content="text/html; charset='.$modx->config['modx_charset'].'" />
-<link rel="stylesheet" type="text/css" href="/manager/media/style/'.$theme.'/style.css" />
+<link rel="stylesheet" type="text/css" href="'.MODX_MANAGER_URL.'/media/style/'.$theme.'/style.css" />
 <link rel="stylesheet" type="text/css" href="'.$mp_url.'css/jquery-ui.css" />
 <link href="'.$mp_url.'fullcalendar/fullcalendar.css" rel="stylesheet" />
 <link href="'.$mp_url.'css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
