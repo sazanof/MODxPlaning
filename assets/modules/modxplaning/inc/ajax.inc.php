@@ -1,8 +1,10 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/manager/includes/protect.inc.php');
-include ($_SERVER['DOCUMENT_ROOT'].'/manager/includes/config.inc.php');
-include(MODX_BASE_PATH."manager/includes/document.parser.class.inc.php");
-$modx = new DocumentParser;
+define('MODX_API_MODE', true);
+include_once($_SERVER['DOCUMENT_ROOT']."/index.php");
+$modx->db->connect();
+if (empty($modx->config)) {
+    $modx->getSettings();
+}
 function normJsonStr($str){
     $str = preg_replace_callback('/\\\u([a-f0-9]{4})/i', create_function('$m', 'return chr(hexdec($m[1])-1072+224);'), $str);
     return iconv('cp1251', 'utf-8', $str);
