@@ -26,7 +26,7 @@ $container = isset($container) ? $container : "#calendar"; // <div id="calendar"
 $result = isset($result) ? $result : "#result"; // <div id="result">
 $lang = isset($lang) ? $lang : 'ru';
 $successMsg = isset($successMsg) ? $modx->getChunk($successMsg) : '';
-$fc = 'fullcalendar-2.6.1';
+$fc = 'fullcalendar';
 if ($jQ=='y'){$modx->regClientStartupScript($mp_url.'js/jquery-1.11.1.min.js');}
 elseif ($jQ=='n'){$out.='';}
 else{die();}
