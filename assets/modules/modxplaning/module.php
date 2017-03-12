@@ -107,7 +107,7 @@ if (!$_GET['op']) {
 
 				$btn_add_event ='<li id="add_event_button"><a href="#"><img src="'.$mp_imgs_dir.'folder_page_add.png"> '.$lang['but_addEvent'].'</a></li>';
 				$btn_add_event .='<li id="add_cat_button"><a href="'.$mp_header.'&cal_id='.$_GET['cal_id'].'&op=cat"><img src="'.$mp_imgs_dir.'folder_add.png"> '.$lang['but_category'].'</a></li>';
-				$btn_add_event .='<li id="change_cal"><a href="#"><img src="'.$mp_imgs_dir.'cal.gif"> </a></li>';
+				$btn_add_event .='<li id="change_cal"><a href="#"><img src="'.$mp_imgs_dir.'cal.gif">'.$lang['change_cal'].'</a></li>';
 			}
 		}
     }
