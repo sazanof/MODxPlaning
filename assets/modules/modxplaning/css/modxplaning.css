@@ -33,3 +33,5 @@ fieldset {margin:0 0 10px 0}
 .leftCat h2 {text-align: center}
 .noty_p {margin-top: 10px; display:block; background: #ddd;padding:4px}
 .noty_p input[type="text"] {width:200px !important;}
+
+.ui-datepicker {z-index:102 !important}
