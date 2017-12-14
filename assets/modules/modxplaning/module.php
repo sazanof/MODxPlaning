@@ -121,18 +121,21 @@ else {
             $cats = $cal->getCategories($_GET['cal_id']);
             $cal_one = $cal->getCalendar($_GET['cal_id']);
             $titl = 'Управление категориями';
-            $out .= '<h1>Список категорий для календаря <a href="'.$mp_header.'&cal_id='.$cal_one['id'].'">"'.$cal_one['title'].'"</a></h1>';
+			
+            $out .= '<h2 class="tab selected">Список категорий для календаря <a href="'.$mp_header.'&cal_id='.$cal_one['id'].'">"'.$cal_one['title'].'"</a></h2>';
+			
             if (count($cats)==0) {
                 $out.='Список категорий пуст. Добавьте первую категорию.';
             }
             else {
-                $out.='<fieldset><legend>Список категорий</legend>
+                $out.='<legend>Список категорий</legend>
                 <div class="categoryList"><ul>';
                 foreach ($cats as $cat){
                     $out.='<li><a href="'.$mp_header.'&cal_id='.$cal_one['id'].'&op=cat&cat_opt=edit&cid='.$cat['id'].'">'.$cat['title'].'</a></li>';
                 }
-                $out.='</ul></div></fieldset>';
+                $out.='</ul></div>';
             }
+		
             if ($_GET['cat_opt']){
                 switch ($_GET['cat_opt']){
                     case 'add' :
@@ -248,10 +251,15 @@ $html = '<html>
 <script src="'.$mp_url.'js/init.js" type="text/javascript"></script>
 </head>
     <body>
-        <h1>MODx Planing</h1>
-        <div class="sectionHeader">'.$titl.'</div>
-        <div class="sectionBody">
-        '.$out.'</div>
+        <h1 class="pagetitle"><i class="fa fa-calendar"></i> MODx Planing</h1>
+		<div class="wrapper">
+			<div class="tab-row-container">
+				<div class="tab-row">
+					<h2 class="tab selected">'.$titl.'</a></h2>
+				</div>
+			</div>
+			<div class="tab-page"><div class="tab-body">'.$out.'</div></div>
+		</div>
         <div class="addCal" title="Управление календарём">
             <span></span>
             <input type="hidden" name="calendar_id"  id="calendar_id" value="">
